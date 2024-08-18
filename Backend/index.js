@@ -4,13 +4,14 @@ import express from "express";
 import todosRoute from "./routes/ToDoRoutes.js";
 
 import cors from 'cors';
-app.use(cors());
 
 // Create our applications server
 const app = express();
 
 // Middleware for parsing request body 
 app.use(express.json());
+
+app.use(cors());
 
 // function to listen to our port
 // Includes callback function to ensure our port is working correctly
