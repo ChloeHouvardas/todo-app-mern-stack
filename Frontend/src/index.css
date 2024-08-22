@@ -158,3 +158,31 @@ body {
     border-radius: 6px;
     /* Change color on hover */
   }
+
+  .frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* center horizontally */
+    justify-content: flex-start;
+    /* Align items to the top */
+    width: 100%;
+    margin-top: 20px;
+    /* Optional: add space from the top */
+    gap: 26px;
+  }
+
+  .text-wrapper {
+    display: flex;
+    flex-direction: row;
+
+    color: #FFFFFF;
+    font-family: "Inter", Helvectica;
+    font-size: 40px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+    position: relative;
+    top: 0;
+    white-space: nowrap;
+  }
