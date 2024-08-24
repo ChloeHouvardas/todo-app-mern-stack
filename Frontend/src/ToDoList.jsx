@@ -1,9 +1,12 @@
 import ToDoItem from "./ToDoItem";
 
-const ToDoList = () => {
+const ToDoList = ({todos}) => {
     return (
         <div>
-            <ToDoItem />
+            {todos.map(todo => (
+                <ToDoItem key={todo._id} todo={todo} deleteTodo={deleteTodo}/>
+            ))}
+            
         </div>
     );
 };
