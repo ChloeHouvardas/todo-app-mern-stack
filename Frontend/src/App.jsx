@@ -29,11 +29,21 @@ const App = () => {
         });
     };
 
+    // Function for deleting todos
+    const deleteTodo = async (id) => {
+        try {
+            await axios.delete(`http://localhost:5555/api/todos/${id}`);
+            setTodos(todos.filter(todo=>todo._id !== id));
+        } catch (error) {
+            console.error("Error deleting todo: ", error);
+        }
+    };
+
     return (
         <div className="frame">
             <h1 className="text-wrapper">todo list</h1>
             <ToDoForm newItem={newItem} setNewItem={setNewItem} addTodo={addTodo}/>
-            <ToDoList todos={todos}/>
+            <ToDoList todos={todos} deleteTodo={deleteTodo}/>
         </div>
     );
 };

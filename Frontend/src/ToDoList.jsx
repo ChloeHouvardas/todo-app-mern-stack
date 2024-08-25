@@ -1,6 +1,6 @@
 import ToDoItem from "./ToDoItem";
 
-const ToDoList = ({todos}) => {
+const ToDoList = ({todos, deleteTodo}) => {
     return (
         <div>
             {todos.map(todo => (
