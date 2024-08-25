@@ -15,10 +15,24 @@ const App = () => {
             });
     }, []);
 
+    // Function for adding todos
+    const addTodo = async (e) => {
+        e.preventDefault();
+        const data = {title: newItem};
+        axios.post('http://localhost:5555/api/todos', data)
+        .then(response => {
+            setTodos([...todos,response.data]);
+            setNewItem('');
+        })
+        .catch(error => {
+            console.error("Error adding todo: ", error);
+        });
+    };
+
     return (
         <div className="frame">
             <h1 className="text-wrapper">todo list</h1>
-            <ToDoForm newItem={newItem} setNewItem={setNewItem}/>
+            <ToDoForm newItem={newItem} setNewItem={setNewItem} addTodo={addTodo}/>
             <ToDoList todos={todos}/>
         </div>
     );
