@@ -48,13 +48,14 @@ router.delete('/:id', async (request, response) => {
 
         const todo = await toDo.findByIdAndDelete(id);
         if (!todo) {
-            return response.status(303).json({message: 'Book not found'})
+            return response.status(404).json({ message: 'todo not found' })
         }
-        return response.status(200).send({message: 'successfully deleted book'});
-    }
-    catch (error) {
+
+        return response.status(200).send({ message: 'successfully deleted todo' });
+
+    } catch (error) {
         console.log(error.message);
-        response.status(500).send({message: error.message})
+        response.status(500).send({ message: error.message })
     }
 });
 
