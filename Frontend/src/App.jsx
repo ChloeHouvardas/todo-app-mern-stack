@@ -39,11 +39,21 @@ const App = () => {
         }
     };
 
+    // Function for updating todos
+    const updateTodo = async (id, newTitle) => {
+        try {
+            const response = await axios.put(`http://localhost:5555/api/todos/${id}`, { title: newTitle });
+            setTodos(todos => todos.map(todo => todo._id === id ? { ...todo, title: response.data.title } : todo));
+        } catch (error) {
+            console.error("Error updating todo: ", error);
+        }
+    };
+
     return (
         <div className="frame">
             <h1 className="text-wrapper">todo list</h1>
             <ToDoForm newItem={newItem} setNewItem={setNewItem} addTodo={addTodo}/>
-            <ToDoList todos={todos} deleteTodo={deleteTodo}/>
+            <ToDoList todos={todos} deleteTodo={deleteTodo} updateTodo={updateTodo}/>
         </div>
     );
 };
