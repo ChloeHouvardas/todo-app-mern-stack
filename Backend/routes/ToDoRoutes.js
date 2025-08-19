@@ -58,6 +58,33 @@ router.delete('/:id', async (request, response) => {
     }
 });
 
+// Route to Update ToDos
+router.put('/:id', async (request, response) => {
+  try {
+    const { id } = request.params;
+
+    if (!request.body.title) {
+      return response.status(400).json({ message: 'You need to include request field: title' });
+    }
+
+    const updatedToDo = await toDo.findByIdAndUpdate(
+      id,
+      { title: request.body.title },
+      { new: true }
+    );
+
+    if (!updatedToDo) {
+      return response.status(404).json({ message: 'todo not found' });
+    }
+
+    return response.status(200).json(updatedToDo);
+
+  } catch (error) {
+    console.log(error.message);
+    return response.status(500).send({ message: error.message });
+  }
+});
+
 
 // to import our methods into index.js
 export default router; 
